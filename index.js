@@ -1,5 +1,6 @@
 let userName = `User Name Test`
 let userEmail = `useremailtest@xyz.com`
+const body = document.querySelector(`body`)
 
 submitData = (userName, userEmail) => {
     const configObj = {
@@ -16,9 +17,11 @@ submitData = (userName, userEmail) => {
     return fetch("http://localhost:3000/users/", configObj)
     .then(resp => resp.json())
     .then((object) => { 
-        const body = document.querySelector('body');
-        body.innerHTML = object.id;
-        body.style.fontSize = `100px`
+        const p = document.createElement(`p`)
+        p.innerHTML = object.id;
+        body.appendChild(p)
+        p.style.fontSize = `100px`
+        p.style.margin = `0`
     })
     .catch((error) => {
         console.log(error.message)
